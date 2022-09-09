@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.example.s389859official.S389859OfficialApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.9 s - in com.example.s389859official.S389859OfficialApplicationTests
