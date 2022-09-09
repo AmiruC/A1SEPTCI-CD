@@ -10,10 +10,26 @@ public class ItemDAO {
     private static Items list = new Items();
 
     static{
-        list.getItemList().add(new Item("0","Mug","For drinks",12.00));
-        list.getItemList().add(new Item("1","Chair","For sitting",55.00));
+        list.getItemList().add(new Item("0","Mug","For drinks","mug.jpg",12.00));
+        list.getItemList().add(new Item("1","Chair","For sitting","chair.jpg",55.00));
     }
 
     public Items getAllItems(){return list;}
-    public void addItem(Item item){list.getItemList().add(item);}
+
+    public Item getItemId(int id){
+      return list.getItemList().get(id);
+    }
+
+    public static Item updateItem(int id, Item item){
+        item.setId(String.valueOf(id));
+        list.put(id,item);
+        return item;
+    }
+
+    public Item deleteItem(int id){
+        return list.getItemList().remove(id);
+    }
+
+
+//    public void addItem(Item item){list.getItemList().add(item);}
 }

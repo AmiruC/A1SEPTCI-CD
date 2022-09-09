@@ -9,19 +9,27 @@ public class Item {
     private String id;
     private String name;
     private String desc;
+
+    private String imgURL;
     private double price;
 
-    public Item(String id, String name, String desc, double price) {
+    public Item(String id, String name, String desc,String imgURL, double price) {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.price = price;
+        this.imgURL = imgURL;
     }
 
 
     public String getId() {
         return id;
     }
+    public String getImgURL() {
+        return imgURL;
+    }
+
+    public void setImgURL(String imgURL) {this.imgURL = imgURL;}
 
     public void setId(String id) {
         this.id = id;
@@ -57,6 +65,7 @@ public class Item {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", desc='" + desc + '\'' +
+                ", image='" + imgURL + '\'' +
                 ", price=" + price +
                 '}';
     }

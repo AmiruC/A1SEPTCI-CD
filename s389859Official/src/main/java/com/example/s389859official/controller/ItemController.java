@@ -11,26 +11,27 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping (path = "/products")
+@RequestMapping (path = "/item")
 
 public class ItemController {
     @Autowired
     private ItemDAO productsDAO;
 
     @GetMapping(path = "/", produces = "application/json")
-    public Items getProducts(){return productsDAO.getAllItems();}
+    public Items getProducts() {
+        return productsDAO.getAllItems();
+    }
 
-    @PostMapping(path = "/", consumes = "application/json",produces = "application/json")
+    @PostMapping(path = "/", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> addProducts(
             @RequestHeader(name = "X-COM-PERSIST", required = false) String headerPersist,
             @RequestHeader(name = "X-COM-LOCATION", required = false, defaultValue = "ASIA") String headerLocation,
             @RequestBody Item item)
-        throws Exception
-    {
-        int id = productsDAO.getAllItems().getItemList().size()+1;
+            throws Exception {
+        int id = productsDAO.getAllItems().getItemList().size() + 1;
         item.setId("id");
 
-        productsDAO.addItem(item);
+//        productsDAO.addItem(item);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -38,5 +39,28 @@ public class ItemController {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
+
+    //Get record by id
+    @GetMapping("/item/{id}")
+    public Item getItemId(@PathVariable String id){
+        int number = Integer.parseInt(id);
+
+        return productsDAO.getItemId(number);
+    }
+
+    //Put update Record by id
+    @PutMapping("/update/{id}")
+    public Item updateItem(@PathVariable String id, @RequestBody Item item){
+        int number = Integer.parseInt(id);
+
+        return productsDAO.updateItem(number,item);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Boolean deleteItem(@PathVariable(value = "id")String id){
+
+        return true;
+    }
+
 
 }
